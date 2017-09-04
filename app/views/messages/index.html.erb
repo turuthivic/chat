@@ -1,0 +1,5 @@
+<% @messages.each do |message| %>
+	<%= message.content %>
+<% end %>
+
+<%= link_to "back", messages_path, class: "btn btn-primary" %>

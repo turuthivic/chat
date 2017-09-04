@@ -1,0 +1,5 @@
+<% @chatrooms.each do |cr| %>
+	<%= cr.content %>
+<% end %>
+
+<%= link_to "back", chatrooms_path, class: "btn btn-primary" %>
