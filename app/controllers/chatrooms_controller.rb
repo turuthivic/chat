@@ -1,7 +1,7 @@
-class MessagesController < ApplicationController
+class ChatroomsController < ApplicationController
   before_action :set_chatroom, only: [:show, :edit, :destroy]
   def index
-    @chatroom = ChatRoom.all
+    @chatrooms = ChatRoom.all
   end
 
   def new
@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
   def create
     @chatroom = ChatRoom.new(chatroom_params)
     if @chatroom.save
-      flash[:] = "success"
+      flash[:success] = "success"
       redirect_to root_path
     else
       flash[:error] = "error, check the error logs and try again"
@@ -27,7 +27,7 @@ class MessagesController < ApplicationController
 
   def update
     if @chatroom = ChatRoom.update(chatroom_params)
-      flash[:] = "success"
+      flash[:success] = "success"
       redirect_to root_path
     else
       flash[:error] = "error, check the error logs and try again"
