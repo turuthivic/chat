@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# chat
+>>>>>>> 8a022895f6f2cc47b60cc6d2a89161341e045431
