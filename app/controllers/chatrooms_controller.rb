@@ -12,7 +12,7 @@ class ChatroomsController < ApplicationController
     @chatroom = ChatRoom.new(chatroom_params)
     if @chatroom.save
       flash[:success] = "success"
-      redirect_to root_path
+      redirect_to chatroom(chatroom)
     else
       flash[:error] = "error, check the error logs and try again"
       render :new
