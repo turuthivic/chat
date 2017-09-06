@@ -9,15 +9,16 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.new(message_params)
+    message = Message.new(message_params)
+    message.user = current_user
     if @message.save
-      flash[:success] = "success"
-      redirect_to root_path
-    else
-      flash[:error] = "error, check the error logs and try again"
-      render :new
+      ActionCable.server.broadcast 'messages'
+        message: message.content
+        user: message.user.username
+      head :ok
     end
   end
+  
   def show
   end
 

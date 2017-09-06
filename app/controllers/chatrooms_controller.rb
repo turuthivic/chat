@@ -1,24 +1,26 @@
 class ChatroomsController < ApplicationController
-  before_action :set_chatroom, only: [:show, :edit, :destroy]
+  before_action :set_chatroom, only: [:edit, :destroy]
   def index
-    @chatrooms = ChatRoom.all
+    @chatrooms = Chatroom.all
   end
 
   def new
-    @chatroom = ChatRoom.new
+    @chatroom = Chatroom.new
   end
 
   def create
-    @chatroom = ChatRoom.new(chatroom_params)
+    @chatroom = Chatroom.new(chatroom_params)
     if @chatroom.save
       flash[:success] = "success"
-      redirect_to chatroom(chatroom)
+      redirect_to @chatroom
     else
       flash[:error] = "error, check the error logs and try again"
       render :new
     end
   end
   def show
+    @message = Message.new
+    @chatroom = Chatroom.find_by(slug: params[:slug])
   end
 
 
@@ -26,26 +28,26 @@ class ChatroomsController < ApplicationController
   end
 
   def update
-    if @chatroom = ChatRoom.update(chatroom_params)
+    if @chatroom = Chatroom.update(chatroom_params)
       flash[:success] = "success"
-      redirect_to root_path
+      redirect_to @chatroom
     else
       flash[:error] = "error, check the error logs and try again"
-      render chatroom
+      render @chatroom
     end
   end
 
   def destroy
-    if @chatroom = ChatRoom.destroy(chatroom_params)
+    if @chatroom = Chatroom.destroy(chatroom_params)
       redirect_to root_path
     else
-      render chatroom
+      render @chatroom
     end
   end
 
   private
   def set_chatroom
-    @chatroom = ChatRoom.find(params[:id])
+    @chatroom = Chatroom.find(params[:id])
   end
 
   def chatroom_params
