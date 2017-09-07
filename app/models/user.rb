@@ -4,7 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-   has_many :messages
-   has_many :chatrooms, through: :messages
+   has_many :messages, dependent: :destroy
+   has_many :chatrooms, through: :messages, dependent: :destroy
    validates :username, uniqueness: true, presence: true
+
+   # def username
+   # 	email.split('@')[0]
+   # end
+   def timestamp
+   	created_at.strftime('%H:%M:%S %d %B %Y')
+   end
 end

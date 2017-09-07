@@ -9,10 +9,10 @@ class ChatroomsController < ApplicationController
   end
 
   def create
-    @chatroom = Chatroom.new(chatroom_params)
+    @chatroom = current_user.chatrooms.build(chatroom_params)
     if @chatroom.save
       flash[:success] = "success"
-      redirect_to @chatroom
+      redirect_to chatrooms_path
     else
       flash[:error] = "error, check the error logs and try again"
       render :new
@@ -20,7 +20,7 @@ class ChatroomsController < ApplicationController
   end
   def show
     @message = Message.new
-    @chatroom = Chatroom.find_by(slug: params[:slug])
+    @chatroom = Chatroom.includes(:messages).find_by(id: params[:id])
   end
 
 

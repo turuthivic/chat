@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
  root "chatrooms#index"
  resources :messages
- resources :chatrooms, param: :slug
- devise_for :users
+ resources :chatrooms, only: [:new, :create, :show, :index]
+ devise_for :users, controller: {registrations: "registrations"}
 
  #serve websocket cable requests
  mount ActionCable.server => '/cable'

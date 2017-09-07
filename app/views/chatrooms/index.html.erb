@@ -1,5 +1,6 @@
+<p class="lead"><%= link_to 'New Chat Room', new_chatroom_path, class: 'btn btn-primary' %></p>
 <% @chatrooms.each do |cr| %>
-	<%= cr.topic %>
+	<p><%= cr.topic %></p>
+	<li><%= link_to "Enter #{cr.topic}", chatroom_path(cr) %></li>
 <% end %>
-
-<%= link_to "back", chatrooms_path, class: "btn btn-primary" %>
+ 
