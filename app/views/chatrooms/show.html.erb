@@ -1,7 +1,7 @@
 <h1><%= @chatroom.topic %></h1>
 
 <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-  <%= render partial: 'messages/message', collection: @chat_room.messages %>
+  <%= render partial: 'messages/message', collection: @chatroom.messages %>
 </div>
 
 <%= form_for @message, url: '#' do |f| %>
