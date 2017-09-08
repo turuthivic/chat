@@ -1,13 +1,13 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  attr_accessor :login
+  # attr_accessor :login
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
    has_many :messages, dependent: :destroy
    has_many :chatrooms, through: :messages, dependent: :destroy
-   validates :username, uniqueness: true, presence: true
+   validates :email, uniqueness: true, presence: true
 
    # def username
    # 	email.split('@')[0]
@@ -16,4 +16,11 @@ class User < ApplicationRecord
    	created_at.strftime('%H:%M:%S %d %B %Y')
    end
 
+  def login=(login)
+    @login = login
+  end
+
+  def login
+    @login || self.username || self.email
+  end
 end
