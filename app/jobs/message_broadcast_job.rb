@@ -2,13 +2,12 @@ class MessageBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(message)
-    ActionCable.server.broadcast "chatrooms_#{message.chatroom.id}_channel",
-                                 message: render_message(message)
+    ActionCable.server.broadcast "messages", message: render_message(message)#{message.chatroom.id}_channel",
   end
 
 private
 
   def render_message(message)
-    MessagesController.render partial: 'messages/message', locals: {message: message}
+    ApplicationController.renderer.render(partial: 'messages/message', locals: {message: message})
   end
 end

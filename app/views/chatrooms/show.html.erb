@@ -1,15 +1,14 @@
-<h1><%= @chatroom.topic %></h1>
+<div class="row">
+<div class="col-md-2"><h1><%= @chatroom.topic %></h1></div>
+<div class="col-md-8">
+<% if user_signed_in? %>
+  <li>
+  <p class="pull_right"><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-danger" %>  </p> 
+<% end %>
+</div>
 
 <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
   <%= render partial: 'messages/message', collection: @chatroom.messages %>
 </div>
+<%= render partial: 'messages/message_form', locals: {message: @message, chatroom: @chatroom} %>
 
-<%= form_for @message, url: '#' do |f| %>
-  <div class="form-group">
-    <%= f.label :message %>
-    <%= f.text_area :content, class: 'form-control' %>
-    <small class="text-muted">From 2 to 1000 characters</small>
-  </div>
-
-  <%= f.submit class: 'btn btn-primary btn-lg' %>
-<% end %>

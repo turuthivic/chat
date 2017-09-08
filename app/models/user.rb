@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  attr_accessor :login
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -14,4 +15,5 @@ class User < ApplicationRecord
    def timestamp
    	created_at.strftime('%H:%M:%S %d %B %Y')
    end
+
 end
