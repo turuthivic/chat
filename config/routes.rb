@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
- root "chatrooms#index"
+ root "home#home"
+ get "home/about"
+ get "home/contact"
+ get "home/gallery"
+
  resources :messages
  resources :chatrooms, only: [:new, :create, :show, :index]
  devise_for :users, controller: {registrations: "registrations"}

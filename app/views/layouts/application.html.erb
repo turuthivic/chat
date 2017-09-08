@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chat</title>
+    <title>Home | Unipocket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="real time chat"/>
     <%= action_cable_meta_tag %>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', 'style', 'font-awesome', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' 'move-top', 'easing', 'data-turbolinks-track': 'reload' %>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+    function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
   </head>
 
   <body>
+    <%= render partial: 'home/navbar' %>
   	<div class="container">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     <%= yield %>
+    </div>
+    <%= render partial: 'home/footer' %>
+    <%= render partial: 'home/js' %>
     </div>
   </body>
 </html>
