@@ -1,10 +1,10 @@
 class MessagesChannel < ApplicationCable::Channel
 	def subscribed
-		stream_from 'messages'
+    stream_from "room-#{params['room']}:messages"
 	end
 
 	def receive(payload)
-    message = Message.create(chatroom_id: payload["chatroom_id"], content: payload["message"])
-    ActionCable.server.broadcast('messages', {message: message.content, chatroom_id: message.chatroom_id})
-	 end
+		Message.create(user: current_user, chatroom_id: params["room"], content: payload["message"])
+	    ActionCable.server.broadcast('messages', {message: message.content, chatroom_id: message.chatroom_id})
+	end
 end
