@@ -15,12 +15,4 @@ class User < ApplicationRecord
    def timestamp
    	created_at.strftime('%H:%M:%S %d %B %Y')
    end
-
-  def login=(login)
-    @login = login
-  end
-
-  def login
-    @login || self.username || self.email
-  end
 end
